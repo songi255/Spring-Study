@@ -1,0 +1,105 @@
+스프링의 특징
+    - DI(Dependency Injection : 의존주입) 지원
+    - AOP(Aspect-Oriented Programming) 지원
+    - MVC 웹 프레임워크 제공
+    - DB연동 지원 : JDBC, JPA, 선언적 트랜잭션처리 등
+    - 그외 : 스케줄링, JMS(메세지연동), 이메일 발송, 테스트 지원 등
+
+실제로 스프링으로 개발할 때는, 스프링만 단독으로 사용하는게 아니고, 여러 스프링관련 프로젝트를 함께 사용한다.
+    - 자주 사용되는 것들
+        - spring data
+            - JAP, Mongo DB, Redis
+        - spring security : 인증/인가 관련
+            - 웹 접근 제어
+            - 객체 접근 제어
+            - DB / Open ID / LDAP 등 다양한 인증방식
+            - 암호화 기능
+        - spring batch
+            - logging / tracking
+            - 작업 통계
+            - 실패 처리 등
+
+프로젝트 구성도구
+    - 스프링 프레임워크에는 다양한 모듈 존재
+        - 핵심모듈
+            - spring-core
+            - spring-beans
+            - spring-context
+            - spring-aop
+            - spring-webmvc
+            - spring-jdbc
+            - spring-tx
+        - 각 모듈은 스프링 프레임워크에 포함되어있지 않은 다른 모듈을 필요로 한다.
+        - 예를들어, spring-aop 는 aopalliance 모듈을 필요로 한다.
+    - 각 모듈은 Maven 중앙 리포지토리를 통해 배포되고있다.
+
+Maven 설치
+    1. http://maven.apache.org/ 에서 다운로드.
+    2. C:\ 같이 찾기 쉬운위치에 압축해제
+    3. 압축 해제 시 apache-maven-X.X.X/bin/mvn.bat 파일 생성
+    4. PATH 환경변수에 bin 폴더 추가 -> mvn -version 으로 확인 (JAVA_HOME을 사용하므로, 경로 사전확인!!)
+
+Gradle 설치
+    Maven vs Gradle 둘 중 원하는 것을 사용하면 된다.
+    Maven 과 일치하므로 생략
+    Grable의 경우 프로젝트 생성시 pom.xml 대신 build.gradle 사용하는 것 뿐, 폴더구조까지도 동일하다.
+    build.gradle 파일 참고!
+    이 후 프로젝트 폴더에서 gradle wrapper 하여 래퍼파일 생성
+        - 성공시 생성
+            - gradlew.bat, gradlew
+                - gradle 명령어 대신 사용할 수 있는 래퍼파일 (실행파일)
+                - 이 파일이 있으면 gradle 설치 없이 명령어 실행가능
+            - gradle 폴더
+        - 소스코드 공유 시 위 파일들을 공유하면 gradle이 설치되지 않은 개발자도 래퍼파일을 사용해서 명령어 실행가능
+    이 후 gradlew compileJava 실행하여 컴파일
+
+
+Spring 프로젝트 생성
+    1. 그룹폴더/프로젝트폴더/src/main/java 구조로 폴더 생성 (Maven 의 프로젝트 구조임)
+        - java 폴더
+            - java source 파일들이 위치
+        - main/resource
+            - XML, Property 같이 Java source 외 다른 자원파일들
+        - main/webapp
+            - 웹 앱 개발에는 이 폴더가 기준폳더가 된다. jsp의 그 폴더 맞다.
+    2. 프로젝트폴더/pom.xml 생성 (pom_프로젝트생성용.xml 참고)
+        - pom.xml 은 Maven 의 핵심이다. 모든 설정정보를 관리하는 파일임
+        - 프로젝트에서 필요한 의존모듈, 플러그인 등 설정
+    3. pom.xml 이용해서 프로젝트 생성
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

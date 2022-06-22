@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>SpringStudy</groupId> <!-- 프로젝트 그룹지정 -->
+    <artifactId>Study</artifactId> <!-- 프로젝트의 식별자 -->
+    <version>0.0.1-SNAPSHOT</version>
+
+    <dependencies>
+        <!-- 의존을 추가한다는 것은, 일반적인 Java 어플리케이션에서 ClassPath에 모듈을 추가한다는 것 -->
+        <dependency> <!-- 프로젝트에서 5.2.3버전의 spring-context모듈을 사용한다고 설정 -->
+            <groupId>org.springframework</groupId>
+            <!-- Maven 은 한개의 모듈을 Artifact 단위로 관리한다. -->
+            <artifactId>spring-context</artifactId> <!-- 실제 이름은 .jar가 붙음. 컴파일하고 실행 시 classPath에 spring-context.jar 추가한다는 의미 -->
+            <version>5.2.3.RELEASE</version>
+        </dependency>
+        <!-- spring-context를 다운받은적이 없는데? -> Maven이 알아서 해준다.
+            - Maven Local Repository 검색 후 있으면 해당파일 사용
+            - 없으면 Maven Remote Repository 에서 다운로드해서 추가해줌 ( 프로젝트 폴더로 이동하여 mvn compile 하면 다운받는 걸 볼 수 있음 )
+            - 기본 리포지토리 : [user_home]\.m2\repository\org\springframework\spring-context\5.2.3.RELEASE
+            - Apache 에서 Maven 을 관리. Repository 의 등록방법도 제공한다. -> 따라서 dependency 만 잘 추가해주면 필요한 jar 파일을 손쉽게 프로젝트에 추가할 수 있다.
+         -->
+        <!-- Transitive Dependencies 의존전이
+            - 의존모듈이 의존하는 모듈도 자동으로 다운받는다.
+            - 의존모듈 다운로드 시, .pom 파일을 먼저 받는데, 여기에 종속정보가 포함되어있으므로 전부 자동으로 다운받아진다.
+        -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin> <!-- java 11버전으로 컴파일하고 결과 클래스 생성한다는 뜻. 소스코드의 인코딩은 utf-8 -->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
