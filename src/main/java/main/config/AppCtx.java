@@ -2,13 +2,31 @@ package main.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import spring.*;
 
 // Spring 을 사용한 DI. 설정정보를 이용해서 작성한다.
 // 이렇게 Annotation을 사용한 경우 AnnotationConfigApplicationContext 를 사용해서 생성한다.
 // Configuration 클래스는 내부적으로 Bean으로 생성되어 관리된다.
 @Configuration
+@ComponentScan(basePackages = {"spring"}, // 컴포넌트 스캔을 사용하겠다고 명시했다. basePackages로 어떤 패키지에서 스캔할지 배열로 준다.
+    excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "spring\\..*Dao") // 스캔 제외대상 지정. REGEX말고도 여러 옵션이 있다.
+        //pattern은 배열로 여러개를 넘길 수 있다.
+        //ASPECTJ옵션을 사용한다면 "spring.*Dao"로 사용할 수 있다. 동작을 원한다면 dependency에 aspectjweaver 모듈을 추가해야 한다.
+        //보면 머.. 어노테이션으로도 적용할 수 있다. 이때는 pattern대신 classes = {커스텀어노테이션클래스.class, ...} 형식으로 준다.
+        // ASSIGNABLE_TYPE 을 사용하면 특정타입 + 하위타입을 제외할 수 있다.역시 classes를 사용한다.
+        // 위 필터들을 섞어서 여러개 사용할 수도 있다!! {}로 묶어서 필터를 여러개 제시하면 된다.
+)
+// @Component만이 스캔되는게 아니고 아래 어노테이션들도 포함된다.
+// @Controller
+// @Service
+// @Repository
+// @Aspect
+// @Configuration
+// 사실, @Aspect를 제외하고는 모두 @Component에 대한 특수 애노테이션이다. 실제로 애노테이션정의로 가보면 @Component가 붙어있따!!
+// 충돌처리를 잘 해주어야 한다. 만약 스캔과 설정파일에서의 수동설정을 동시에 하면 수동등록한 빈이 우선시된다.
 public class AppCtx {
 
     /* 의존자동주입의 순서는 어떻게 될까?

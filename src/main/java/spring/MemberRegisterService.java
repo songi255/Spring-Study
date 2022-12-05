@@ -14,7 +14,7 @@ public class MemberRegisterService {
 
     // 의존 자동주입을 사용한 예시
     @Autowired
-    private  MemberDao memberDao;
+    private MemberDao memberDao;
 
     // 의존객체를 직접 생성하지 않고, 생성자를 통해 받고있다.
     public MemberRegisterService(MemberDao memberDao) {
