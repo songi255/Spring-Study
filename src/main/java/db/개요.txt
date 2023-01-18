@@ -1,0 +1,5 @@
+DB 코드는 구조적인 반복이 굉장히 많은데, Template method / Strategy pattern 을 함께 사용해서 매우 크게 줄일 수 있다.
+    - 이를 구현한 것이 JdbcTemplate 이다.
+    - Template method pattern 은 잘 안변하는 부분은 Abstract에, 자주 변하는 부분은 하위에서 정의해서 사용하는 패턴이다.
+        - 연결설정, 예외처리 등은 abstract에, query 부분만 수정하는게 예시이다.
+    - Strategy pattern 은 객체가 수행하는 행위를 객체로 분리해서, 객체교체만으로 행동전략을 바꾸는 것이다.
